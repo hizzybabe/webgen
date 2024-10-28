@@ -17,6 +17,7 @@ def generate():
     page_type = data.get('type')
     components = data.get('components', [])
     js_features = data.get('jsFeatures', [])
+    color_palette = data.get('colorPalette')  # Add this line
     
     # Generate webpage using Gemini
     try:
@@ -24,7 +25,8 @@ def generate():
             style_framework,
             page_type,
             components,
-            js_features
+            js_features,
+            color_palette  # Add this parameter
         )
         return jsonify({'success': True, 'code': generated_code})
     except Exception as e:

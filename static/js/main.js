@@ -7,7 +7,8 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         framework: formData.get('framework'),
         type: formData.get('pageType'),
         components: [...formData.getAll('components')],
-        jsFeatures: [...formData.getAll('jsFeatures')]
+        jsFeatures: [...formData.getAll('jsFeatures')],
+        colorPalette: formData.get('colorPalette')  // Add this line
     };
 
     try {
