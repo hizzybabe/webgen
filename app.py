@@ -1,12 +1,8 @@
 from flask import Flask, render_template, request, jsonify
-import openai
-from generator import generate_webpage
 import os
+from generator import generate_webpage
 
 app = Flask(__name__)
-
-# Configure OpenAI API
-openai.api_key = os.getenv('OPENAI_API_KEY')
 
 @app.route('/')
 def index():
@@ -17,12 +13,12 @@ def generate():
     data = request.json
     
     # Extract user preferences
-    style_framework = data.get('framework')  # bootstrap/tailwind
-    page_type = data.get('type')  # landing/portfolio/etc
+    style_framework = data.get('framework')
+    page_type = data.get('type')
     components = data.get('components', [])
     js_features = data.get('jsFeatures', [])
     
-    # Generate webpage using OpenAI
+    # Generate webpage using Gemini
     try:
         generated_code = generate_webpage(
             style_framework,
