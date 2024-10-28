@@ -26,7 +26,7 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     """
     
     # Initialize Gemini model
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash-8b')
     
     # Generate response
     response = model.generate_content(prompt)
