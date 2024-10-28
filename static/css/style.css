@@ -1,0 +1,15 @@
+.code-preview {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
