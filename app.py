@@ -12,25 +12,21 @@ def index():
 def generate():
     data = request.json
     
-    # Extract user preferences
-    style_framework = data.get('framework')
-    page_type = data.get('type')
-    components = data.get('components', [])
-    js_features = data.get('jsFeatures', [])
-    color_palette = data.get('colorPalette')  # Add this line
-    
-    # Generate webpage using Gemini
     try:
-        generated_code = generate_webpage(
-            style_framework,
-            page_type,
-            components,
-            js_features,
-            color_palette
+        generated_content = generate_webpage(
+            data.get('framework'),
+            data.get('type'),
+            data.get('components', []),
+            data.get('jsFeatures', []),
+            data.get('colorPalette')
         )
-        if not generated_code:
+        if not generated_content:
             return jsonify({'success': False, 'error': 'No content generated'})
-        return jsonify({'success': True, 'code': generated_code})
+        return jsonify({
+            'success': True, 
+            'code': generated_content['code'],
+            'comments': generated_content['comments']
+        })
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 

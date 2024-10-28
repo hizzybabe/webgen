@@ -22,7 +22,14 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     JavaScript features: {', '.join(js_features)}
     Color Palette: {color_schemes.get(color_palette, color_schemes['modern'])}
     
-    Please use the specified color palette throughout the design and provide complete HTML, CSS, and JavaScript code.
+    Please provide your response in the following format:
+    ---CODE_START---
+    [Your HTML, CSS, and JavaScript code here]
+    ---CODE_END---
+    
+    ---COMMENTS_START---
+    [Your explanations and comments here]
+    ---COMMENTS_END---
     """
     
     # Initialize Gemini model
@@ -31,6 +38,22 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     # Generate response
     response = model.generate_content(prompt)
     if response and response.text:
-        return response.text
+        # Parse the response to separate code and comments
+        text = response.text
+        
+        # Extract code
+        code_start = text.find('---CODE_START---') + 15
+        code_end = text.find('---CODE_END---')
+        code = text[code_start:code_end].strip() if code_start > 14 and code_end > 0 else text
+        
+        # Extract comments
+        comments_start = text.find('---COMMENTS_START---') + 19
+        comments_end = text.find('---COMMENTS_END---')
+        comments = text[comments_start:comments_end].strip() if comments_start > 18 and comments_end > 0 else ''
+        
+        return {
+            'code': code,
+            'comments': comments
+        }
     else:
         raise Exception("Failed to generate webpage content")

@@ -35,17 +35,24 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
             document.getElementById('result').style.display = 'block';
             document.getElementById('generatedCode').textContent = result.code;
             
-            // Add preview functionality
-        document.getElementById('previewBtn').addEventListener('click', () => {
-            const code = document.getElementById('generatedCode').textContent;
-            const previewWindow = window.open('');
-            if (previewWindow) {
-                previewWindow.document.write(code);
-                previewWindow.document.close();
-            } else {
-                alert('Pop-up blocked! Please allow pop-ups for this site to use the preview feature.');
+            // Display comments if they exist
+            if (result.comments) {
+                const commentsElement = document.getElementById('generatedComments');
+                commentsElement.textContent = result.comments;
+                commentsElement.style.display = 'block';
             }
-        });
+            
+            // Modify preview functionality to only use the code
+            document.getElementById('previewBtn').addEventListener('click', () => {
+                const code = result.code; // Use only the code part
+                const previewWindow = window.open('');
+                if (previewWindow) {
+                    previewWindow.document.write(code);
+                    previewWindow.document.close();
+                } else {
+                    alert('Pop-up blocked! Please allow pop-ups for this site to use the preview feature.');
+                }
+            });
         } else {
             alert('Error generating webpage: ' + result.error);
         }
