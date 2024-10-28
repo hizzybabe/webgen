@@ -77,10 +77,20 @@
         <!-- Result Section -->
         <div id="result" class="mt-4" style="display: none;">
             <h3>Generated Code</h3>
-            <div class="code-preview">
-                <pre><code id="generatedCode"></code></pre>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="code-preview">
+                        <pre><code id="generatedCode"></code></pre>
+                    </div>
+                    <button id="downloadBtn" class="btn btn-success">Download Files</button>
+                </div>
+                <div class="col-md-6">
+                    <h4>Live Preview</h4>
+                    <div class="preview-box">
+                        <iframe id="previewFrame" sandbox="allow-scripts"></iframe>
+                    </div>
+                </div>
             </div>
-            <button id="downloadBtn" class="btn btn-success">Download Files</button>
         </div>
 
         <div id="loadingIndicator" class="text-center mt-4" style="display: none;">

@@ -34,6 +34,13 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         if (result.success) {
             document.getElementById('result').style.display = 'block';
             document.getElementById('generatedCode').textContent = result.code;
+            
+            // Update the preview
+            const previewFrame = document.getElementById('previewFrame');
+            const frameDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            frameDoc.open();
+            frameDoc.write(result.code);
+            frameDoc.close();
         } else {
             alert('Error generating webpage: ' + result.error);
         }
