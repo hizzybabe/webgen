@@ -35,12 +35,19 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
             document.getElementById('result').style.display = 'block';
             document.getElementById('generatedCode').textContent = result.code;
             
-            // Update the preview
+            // Update the preview with sandbox attribute and try-catch
             const previewFrame = document.getElementById('previewFrame');
-            const frameDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
-            frameDoc.open();
-            frameDoc.write(result.code);
-            frameDoc.close();
+            try {
+                previewFrame.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+                const frameDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                frameDoc.open();
+                frameDoc.write(result.code);
+                frameDoc.close();
+            } catch (frameError) {
+                console.error('Preview frame error:', frameError);
+                // Fallback - display a message that preview is unavailable
+                previewFrame.srcdoc = '<p>Preview unavailable due to security restrictions. Please use the download button to view the generated code.</p>';
+            }
         } else {
             alert('Error generating webpage: ' + result.error);
         }
