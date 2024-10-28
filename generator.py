@@ -1,9 +1,15 @@
 import google.generativeai as genai
 import os
 
-def generate_webpage(framework, page_type, components, js_features, color_palette):
-    # Configure the Gemini API
-    genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+def generate_webpage(framework, page_type, components, js_features, color_palette, api_key=None):
+    # Use provided API key if available, otherwise fall back to environment variable
+    api_key_to_use = api_key if api_key else os.getenv('GEMINI_API_KEY')
+    
+    if not api_key_to_use:
+        raise Exception("No API key provided. Please either set GEMINI_API_KEY in your environment or provide an API key in the form.")
+    
+    # Configure the Gemini API with the appropriate key
+    genai.configure(api_key=api_key_to_use)
     
     # Define color schemes
     color_schemes = {

@@ -13,7 +13,8 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         type: formData.get('pageType'),
         components: [...formData.getAll('components')],
         jsFeatures: [...formData.getAll('jsFeatures')],
-        colorPalette: formData.get('colorPalette')
+        colorPalette: formData.get('colorPalette'),
+        apiKey: formData.get('apiKey') || null
     };
 
     try {
@@ -127,3 +128,10 @@ function initDarkMode() {
 
 // Initialize dark mode when DOM is loaded
 document.addEventListener('DOMContentLoaded', initDarkMode);
+
+// Add API key toggle functionality
+document.getElementById('toggleApiKey').addEventListener('click', function() {
+    const apiKeyInput = document.getElementById('apiKey');
+    const type = apiKeyInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    apiKeyInput.setAttribute('type', type);
+});

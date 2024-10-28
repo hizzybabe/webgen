@@ -55,3 +55,18 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## API Key Configuration
+
+There are two ways to use this application with your OpenRouter API key:
+
+1. **Environment Variable (Recommended for Development)**
+   - Create a `.env` file in the root directory
+   - Add your API key: `GEMINI_API_KEY=your_api_key_here`
+
+2. **Web Interface**
+   - Input your API key directly in the web form
+   - This method is temporary and the key will only be used for the current session
+   - The key is never stored and must be re-entered if the page is refreshed
+
+⚠️ **Security Note**: Never commit your API key to version control. If using the environment variable method, ensure `.env` is listed in your `.gitignore` file.

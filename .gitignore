@@ -45,9 +45,6 @@ instance/
 .env.test.local
 .env.production.local
 
-# OpenAI API Key
-.env
-
 # Node modules (if you add any JavaScript packages)
 node_modules/
 npm-debug.log
