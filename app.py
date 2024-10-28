@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 import openai
 from generator import generate_webpage
+import os
 
 app = Flask(__name__)
 
 # Configure OpenAI API
-openai.api_key = 'your-api-key'
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 @app.route('/')
 def index():
