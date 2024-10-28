@@ -1,5 +1,30 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --code-bg: #f8f9fa;
+    --code-border: #e9ecef;
+    --preview-bg: #f8f9fa;
+    --preview-border: #0d6efd;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --code-bg: #2d2d2d;
+    --code-border: #404040;
+    --preview-bg: #2d2d2d;
+    --preview-border: #3b82f6;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .code-preview {
-    background-color: #f8f9fa;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
     padding: 20px;
     border-radius: 5px;
     margin: 20px 0;
@@ -25,7 +50,7 @@ pre {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(var(--bg-color), 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,16 +66,16 @@ pre {
 }
 
 .comments-preview {
-    background-color: #f8f9fa;
+    background-color: var(--preview-bg);
+    border-left: 4px solid var(--preview-border);
     padding: 15px;
     border-radius: 5px;
-    border-left: 4px solid #0d6efd;
     margin: 20px 0;
     font-size: 1.2rem;
 }
 
 .comments-preview code {
-    background-color: #e9ecef;
+    background-color: var(--code-border);
     padding: 2px 4px;
     border-radius: 3px;
     font-family: monospace;
