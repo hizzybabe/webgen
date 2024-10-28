@@ -30,5 +30,7 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     
     # Generate response
     response = model.generate_content(prompt)
-    
-    return response.text
+    if response and response.text:
+        return response.text
+    else:
+        raise Exception("Failed to generate webpage content")

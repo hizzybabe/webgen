@@ -26,11 +26,13 @@ def generate():
             page_type,
             components,
             js_features,
-            color_palette  # Add this parameter
+            color_palette
         )
+        if not generated_code:
+            return jsonify({'success': False, 'error': 'No content generated'})
         return jsonify({'success': True, 'code': generated_code})
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)})
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
