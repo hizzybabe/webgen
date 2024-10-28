@@ -14,16 +14,21 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         components: [...formData.getAll('components')],
         jsFeatures: [...formData.getAll('jsFeatures')],
         colorPalette: formData.get('colorPalette'),
-        apiKey: formData.get('apiKey') || null
+        apiKey: formData.get('apiKey')?.trim() || null // Add trim to remove whitespace
     };
 
     try {
         const response = await fetch('/generate', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-API-Key': data.apiKey || '', // Move API key to header
+                'Cache-Control': 'no-store' // Prevent caching
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                ...data,
+                apiKey: undefined // Remove API key from body
+            })
         });
 
         const result = await response.json();
