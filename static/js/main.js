@@ -38,7 +38,7 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
             // Display comments if they exist
             if (result.comments) {
                 const commentsElement = document.getElementById('generatedComments');
-                commentsElement.textContent = result.comments;
+                commentsElement.innerHTML = marked.parse(result.comments);
                 commentsElement.style.display = 'block';
             }
             
@@ -87,3 +87,4 @@ document.getElementById('previewBtn').addEventListener('click', () => {
         alert('Pop-up blocked! Please allow pop-ups for this site to use the preview feature.');
     }
 });
+

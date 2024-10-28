@@ -48,31 +48,34 @@ pre {
     margin: 20px 0;
 }
 
-.comments-preview pre {
-    margin: 0;
-    white-space: pre-wrap;
-    font-family: inherit;
+.comments-preview code {
+    background-color: #e9ecef;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
 }
 
-.comments-preview h2 {
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
+.comments-preview pre code {
+    display: block;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.comments-preview p {
     margin-bottom: 1rem;
-    color: #333;
+    line-height: 1.5;
 }
 
-.comments-preview h3 {
-    font-size: 1.2rem;
-    margin-top: 1.2rem;
-    margin-bottom: 0.8rem;
-    color: #444;
-}
-
-.comments-preview ul {
-    padding-left: 20px;
+.comments-preview ul, .comments-preview ol {
+    padding-left: 2rem;
     margin-bottom: 1rem;
 }
 
 .comments-preview li {
     margin-bottom: 0.5rem;
+}
+
+.comments-preview h1, .comments-preview h2, .comments-preview h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
