@@ -70,3 +70,15 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     a.click();
     window.URL.revokeObjectURL(url);
 });
+
+// Add preview functionality
+document.getElementById('previewBtn').addEventListener('click', () => {
+    const code = document.getElementById('generatedCode').textContent;
+    const previewWindow = window.open('');
+    if (previewWindow) {
+        previewWindow.document.write(code);
+        previewWindow.document.close();
+    } else {
+        alert('Pop-up blocked! Please allow pop-ups for this site to use the preview feature.');
+    }
+});
