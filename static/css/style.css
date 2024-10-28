@@ -53,3 +53,26 @@ pre {
     white-space: pre-wrap;
     font-family: inherit;
 }
+
+.comments-preview h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.comments-preview h3 {
+    font-size: 1.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #444;
+}
+
+.comments-preview ul {
+    padding-left: 20px;
+    margin-bottom: 1rem;
+}
+
+.comments-preview li {
+    margin-bottom: 0.5rem;
+}
