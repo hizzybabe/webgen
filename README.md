@@ -1,3 +1,5 @@
+![Webgen banner](webgengithub.jpg)
+
 # AI Webpage Generator
 
 A web-based tool that generates custom webpage code using Google's Gemini AI. Users can specify their preferred CSS framework, page type, components, JavaScript features, and color palette to generate tailored webpage code.
