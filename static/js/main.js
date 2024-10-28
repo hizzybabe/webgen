@@ -1,6 +1,11 @@
 document.getElementById('generatorForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    // Show loading indicator, hide result
+    document.getElementById('loadingIndicator').style.display = 'block';
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('generatorForm').querySelector('button[type="submit"]').disabled = true;
+    
     // Collect form data
     const formData = new FormData(e.target);
     const data = {
@@ -8,7 +13,7 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         type: formData.get('pageType'),
         components: [...formData.getAll('components')],
         jsFeatures: [...formData.getAll('jsFeatures')],
-        colorPalette: formData.get('colorPalette')  // Add this line
+        colorPalette: formData.get('colorPalette')
     };
 
     try {
@@ -22,6 +27,10 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
 
         const result = await response.json();
         
+        // Hide loading indicator
+        document.getElementById('loadingIndicator').style.display = 'none';
+        document.getElementById('generatorForm').querySelector('button[type="submit"]').disabled = false;
+        
         if (result.success) {
             document.getElementById('result').style.display = 'block';
             document.getElementById('generatedCode').textContent = result.code;
@@ -29,6 +38,9 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
             alert('Error generating webpage: ' + result.error);
         }
     } catch (error) {
+        // Hide loading indicator and show error
+        document.getElementById('loadingIndicator').style.display = 'none';
+        document.getElementById('generatorForm').querySelector('button[type="submit"]').disabled = false;
         alert('Error: ' + error.message);
     }
 });
