@@ -18,7 +18,8 @@ def generate():
             data.get('type'),
             data.get('components', []),
             data.get('jsFeatures', []),
-            data.get('colorPalette')
+            data.get('colorPalette'),
+            data.get('language', 'en')
         )
         if not generated_content:
             return jsonify({'success': False, 'error': 'No content generated'})

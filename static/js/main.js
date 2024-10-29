@@ -13,7 +13,8 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         type: formData.get('pageType'),
         components: [...formData.getAll('components')],
         jsFeatures: [...formData.getAll('jsFeatures')],
-        colorPalette: formData.get('colorPalette')
+        colorPalette: formData.get('colorPalette'),
+        language: formData.get('language')
     };
 
     try {

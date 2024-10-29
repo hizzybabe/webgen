@@ -1,7 +1,7 @@
 import google.generativeai as genai
 import os
 
-def generate_webpage(framework, page_type, components, js_features, color_palette):
+def generate_webpage(framework, page_type, components, js_features, color_palette, language='en'):
     # Configure the Gemini API
     genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
     
@@ -15,7 +15,7 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     }
     
     # Construct prompt for Gemini
-    prompt = f"""Create a webpage with:
+    prompt = f"""Create a webpage in {language} language with:
     Framework: {framework}
     Type: {page_type}
     Components: {', '.join(components)}
