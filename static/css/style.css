@@ -105,3 +105,20 @@ pre {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
+
+/* Add support for RTL languages */
+[dir="rtl"] {
+    text-align: right;
+}
+
+/* RTL language support for specific languages */
+html[lang="ar"],
+html[lang="iw"] {
+    direction: rtl;
+}
+
+/* Adjust form controls for RTL */
+[dir="rtl"] .form-select {
+    padding: .375rem .75rem .375rem 1.75rem;
+    background-position: left .75rem center;
+}

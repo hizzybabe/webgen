@@ -14,6 +14,7 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         components: [...formData.getAll('components')],
         jsFeatures: [...formData.getAll('jsFeatures')],
         colorPalette: formData.get('colorPalette'),
+        language: formData.get('language'),
         apiKey: formData.get('apiKey')?.trim() || null // Add trim to remove whitespace
     };
 

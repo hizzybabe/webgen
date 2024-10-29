@@ -24,6 +24,7 @@ def generate():
             data.get('components', []),
             data.get('jsFeatures', []),
             data.get('colorPalette'),
+            data.get('language', 'en'),
             api_key
         )
         if not generated_content:

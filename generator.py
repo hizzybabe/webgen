@@ -1,7 +1,7 @@
 import google.generativeai as genai
 import os
 
-def generate_webpage(framework, page_type, components, js_features, color_palette, api_key=None):
+def generate_webpage(framework, page_type, components, js_features, color_palette, language='en', api_key=None):
     # Sanitize and validate API key
     api_key_to_use = None
     if api_key and api_key.strip():
@@ -30,20 +30,21 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
         }
         
         # Construct prompt for Gemini
-        prompt = f"""Create a webpage with:
+        prompt = f"""Create a webpage in {language} language with:
         Framework: {framework}
         Type: {page_type}
         Components: {', '.join(components)}
         JavaScript features: {', '.join(js_features)}
         Color Palette: {color_schemes.get(color_palette, color_schemes['modern'])}
+        Language: {language}
         
         Please provide your response in the following format:
         ---CODE_START---
-        [Your HTML, CSS, and JavaScript code here]
+        [Your HTML, CSS, and JavaScript code here in {language} language]
         ---CODE_END---
         
         ---COMMENTS_START---
-        [Your explanations and comments here]
+        [Your explanations and comments here in {language} language]
         ---COMMENTS_END---
         """
         
