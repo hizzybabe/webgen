@@ -15,21 +15,18 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     }
     
     # Construct prompt for Gemini
-    prompt = f"""Create a webpage in {language} language with:
+    prompt = f"""Create a single HTML file in {language} language with:
     Framework: {framework}
     Type: {page_type}
     Components: {', '.join(components)}
     JavaScript features: {', '.join(js_features)}
     Color Palette: {color_schemes.get(color_palette, color_schemes['modern'])}
     
+    Include all CSS in a <style> tag and all JavaScript in a <script> tag within the HTML file.
     Please provide your response in the following format:
     ---CODE_START---
-    [Your HTML, CSS, and JavaScript code here]
+    [Your complete HTML file with embedded CSS and JavaScript]
     ---CODE_END---
-    
-    ---COMMENTS_START---
-    [Your explanations and comments here]
-    ---COMMENTS_END---
     """
     
     # Initialize Gemini model
@@ -38,22 +35,15 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     # Generate response
     response = model.generate_content(prompt)
     if response and response.text:
-        # Parse the response to separate code and comments
+        # Parse the response to get code
         text = response.text
-        
-        # Extract code
         code_start = text.find('---CODE_START---') + 15
         code_end = text.find('---CODE_END---')
         code = text[code_start:code_end].strip() if code_start > 14 and code_end > 0 else text
         
-        # Extract comments
-        comments_start = text.find('---COMMENTS_START---') + 19
-        comments_end = text.find('---COMMENTS_END---')
-        comments = text[comments_start:comments_end].strip() if comments_start > 18 and comments_end > 0 else ''
-        
         return {
             'code': code,
-            'comments': comments
+            'comments': ''  # Empty comments since we're not using them
         }
     else:
         raise Exception("Failed to generate webpage content")

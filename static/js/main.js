@@ -35,13 +35,8 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         if (result.success) {
             document.getElementById('result').style.display = 'block';
             document.getElementById('generatedCode').textContent = result.code;
-            
-            // Display comments if they exist
-            if (result.comments) {
-                const commentsElement = document.getElementById('generatedComments');
-                commentsElement.innerHTML = marked.parse(result.comments);
-                commentsElement.style.display = 'block';
-            }
+            document.getElementById('generatedComments').style.display = 'none';
+        }
             
             // Modify preview functionality to only use the code
             document.getElementById('previewBtn').addEventListener('click', () => {
