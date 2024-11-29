@@ -36,11 +36,10 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
             document.getElementById('result').style.display = 'block';
             document.getElementById('generatedCode').textContent = result.code;
             document.getElementById('generatedComments').style.display = 'none';
-        }
             
             // Modify preview functionality to only use the code
             document.getElementById('previewBtn').addEventListener('click', () => {
-                const code = result.code; // Use only the code part
+                const code = result.code;
                 const previewWindow = window.open('');
                 if (previewWindow) {
                     previewWindow.document.write(code);
