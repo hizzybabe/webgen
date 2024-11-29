@@ -37,8 +37,8 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
             document.getElementById('generatedCode').textContent = result.code;
             document.getElementById('generatedComments').style.display = 'none';
             
-            // Modify preview functionality to only use the code
-            document.getElementById('previewBtn').addEventListener('click', () => {
+            // Add preview button click handler
+            document.getElementById('previewBtn').onclick = () => {
                 const code = result.code;
                 const previewWindow = window.open('');
                 if (previewWindow) {
@@ -47,7 +47,7 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
                 } else {
                     alert('Pop-up blocked! Please allow pop-ups for this site to use the preview feature.');
                 }
-            });
+            };
         } else {
             alert('Error generating webpage: ' + result.error);
         }
@@ -69,18 +69,6 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     a.download = 'generated-webpage.html';
     a.click();
     window.URL.revokeObjectURL(url);
-});
-
-// Add preview functionality
-document.getElementById('previewBtn').addEventListener('click', () => {
-    const code = document.getElementById('generatedCode').textContent;
-    const previewWindow = window.open('');
-    if (previewWindow) {
-        previewWindow.document.write(code);
-        previewWindow.document.close();
-    } else {
-        alert('Pop-up blocked! Please allow pop-ups for this site to use the preview feature.');
-    }
 });
 
 // Dark mode functionality
