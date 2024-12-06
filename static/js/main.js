@@ -14,7 +14,8 @@ document.getElementById('generatorForm').addEventListener('submit', async (e) =>
         components: [...formData.getAll('components')],
         jsFeatures: [...formData.getAll('jsFeatures')],
         colorPalette: formData.get('colorPalette'),
-        language: formData.get('language')
+        language: formData.get('language'),
+        contentDescription: formData.get('contentDescription')
     };
 
     try {

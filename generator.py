@@ -1,7 +1,7 @@
 import google.generativeai as genai
 import os
 
-def generate_webpage(framework, page_type, components, js_features, color_palette, language='en'):
+def generate_webpage(framework, page_type, components, js_features, color_palette, language='en', content_description=''):
     # Configure the Gemini API
     genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
     
@@ -21,8 +21,10 @@ def generate_webpage(framework, page_type, components, js_features, color_palett
     Components: {', '.join(components)}
     JavaScript features: {', '.join(js_features)}
     Color Palette: {color_schemes.get(color_palette, color_schemes['modern'])}
+    Content Description: {content_description if content_description else 'A generic website'}
     
     Include all CSS in a <style> tag and all JavaScript in a <script> tag within the HTML file.
+    Generate appropriate content based on the content description provided.
     Please provide your response in the following format:
     ---CODE_START---
     [Your complete HTML file with embedded CSS and JavaScript]
